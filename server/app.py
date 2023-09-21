@@ -86,13 +86,13 @@ class NewsletterByID(Resource):
         for attr in request.form:
             setattr(record, attr, request.form[attr])
             
-            db.session.add(record)
-            db.session.commit()
-            
-            response_dict = record.to_dict()
-            
-            response = make_response(response_dict, 200)
-            return response
+        db.session.add(record)
+        db.session.commit()
+        
+        response_dict = record.to_dict()
+        
+        response = make_response(response_dict, 200)
+        return response
         
     def delete(self, id):
         record = Newsletter.query.filter(Newsletter.id == id).first()
